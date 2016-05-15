@@ -32,7 +32,7 @@ app.use((err, req, res, next) => {
   res.status(err.statusCode || err).send();
 })
 
-app.listen(9000)
+app.listen(process.env.PORT || 9000)
 
 
 module.exports = app;
