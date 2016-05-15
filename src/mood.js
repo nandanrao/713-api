@@ -38,7 +38,7 @@ mood.getSongInfo = function getSongInfo(songs) {
 }
 
 mood.getPlaylist = function getPlaylist(moodsongs) {
-  var clusters = process.env['CLUSTERS'] || 'http://localhost:5000/clusters';
+  var clusters = process.env['CLUSTERS'] + '/clusters' || 'http://localhost:5000/clusters';
 
   return mood.getSongInfo(moodsongs)
     .then(songs => {
