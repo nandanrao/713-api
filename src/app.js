@@ -14,9 +14,8 @@ app.post('/mood', (req, res, next) => {
   console.log(req.user) // songId
   mood.handler(req.body, req.user.id)
     .then(ans => {
-      res.status(200).send(ans);
+      res.status(201).json({ foo: 'bar' });
     })
-  // next
 })
 
 app.get('partyinfo', (req, res, next) => {
