@@ -1,5 +1,4 @@
 // app.js
-
 var express = require('express');
 var bodyParser = require('body-parser');
 var tokenMiddleware = require('./token');
@@ -17,7 +16,6 @@ app.post('/mood', (req, res, next) => {
     .then(ans => {
       res.status(200).send(ans);
     })
-
   // next
 })
 
