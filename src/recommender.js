@@ -8,8 +8,6 @@ const rec = {};
 rec.getRange = function getRange (name, num) {
   var ans = {};
   ans['target_' + name] = num;
-  // ans['min_' + name] = num*.7;
-  // ans['max_' + name] = num*1.3;
   return ans;
 };
 
@@ -17,10 +15,7 @@ rec.convert = function convert (conf) {
   var raw = Object.keys(conf)
     .map(key => rec.getRange(key, conf[key]))
     .reduce((a,b) => _.merge(a,b));
-  // if (raw.max_popularity) {
-  //   raw.max_popularity = Math.ceil(raw.max_popularity)
-  //   raw.min_popularity = Math.ceil(raw.min_popularity)
-  // }
+
   if (raw.target_popularity) {
     raw.target_popularity = Math.ceil(raw.target_popularity)
   }

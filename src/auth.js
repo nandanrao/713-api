@@ -2,8 +2,8 @@ var request = require('request-promise');
 var _ = require('lodash');
 var Promise = require('bluebird');
 
-var clientId = 'a341a43346c746aeb3b0305a17c95d28';
-var clientSecret = '7274cdccf1cc4b47bcead24ff3322820';
+var clientId = process.env['SPOTIFY_ID'];
+var clientSecret = process.env['SPOTIFY_SECRET'];
 
 var authString = new Buffer(clientId + ':' + clientSecret).toString('base64');
 
@@ -27,7 +27,8 @@ var callSpotify = function (url, token) {
   return request(_.merge({
     headers: {
       Authorization: 'Bearer ' + token
-    }
+    },
+    json: true
   }, url))
 }
 
