@@ -89,8 +89,8 @@ mood.addPublicList = function addPublicList (user, token) {
         url: 'https://api.spotify.com/v1/users/'+user.id+'/playlists',
         method: 'POST',
         body: {
-          name: 'CPH:713',
-          public: false
+          name: 'CPH:713:B',
+          public: true
         },
         json: true
       }, token)
@@ -113,7 +113,7 @@ firebase.child('playlist').on('value', snap => {
       var list = userlists[userId];
       firebase.child('tokens/' + userId).once('value', snap => {
         var token = snap.val();
-        console.log('token from snap ', token)
+        console.log('token from snap ', token, playlist)
         mood.setUserList(userId, list, playlist, token)
       })
     });
@@ -122,14 +122,11 @@ firebase.child('playlist').on('value', snap => {
 })
 
 
-
-
-
-
 mood.onListChange = function onListChange (moodsongs) {
   mood.getPlaylist(moodsongs)
     .then(playlist => {
       var p = mood.trimPlaylist(playlist)
+      console.log('here p')
       firebase.child('playlist').set(p)
       firebase.child('pointer').set(p[0])
     })
